@@ -10,7 +10,7 @@ I'm **Shuang Song** (SongshGeo), a postdoctoral researcher at the Max Planck Ins
 
 ## 🔗 Links
 
-- 📸 **Photography Gallery**: [Live Site](https://photography-songshgeo.vercel.app) *(deployed via Vercel)*
+- 📸 **Photography Gallery**: [Live Site](https://photography-songshgeo-as9c9jcic-songshgeos-projects.vercel.app) *(deployed via Vercel)*
 - 🎓 **Academic CV**: [cv.songshgeo.com](https://cv.songshgeo.com)
 - ✍️ **Travel Blog**: [songshgeo.com](https://songshgeo.com)
 - 📧 **Contact**: [SongshGeo@gmail.com](mailto:SongshGeo@gmail.com)
