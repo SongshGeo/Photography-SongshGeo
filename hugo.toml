@@ -17,12 +17,15 @@ enableGitInfo = true
   
   [params.author]
     name = 'Shuang Song (SongshGeo)'
-    email = 'song@gea.mpg.de'
+    email = 'SongshGeo@gmail.com'
   
   # Social icons
   [params.socialIcons]
     github = 'https://github.com/SongshGeo'
-    email = 'mailto:song@gea.mpg.de'
+    email = 'mailto:SongshGeo@gmail.com'
+    # Add academic and blog links
+    website = 'https://songshgeo.com/'
+    cv = 'https://cv.songshgeo.com/'
 
 # Image processing
 [imaging]

@@ -35,8 +35,8 @@ Every photograph in this gallery tells part of that ongoing journey - moments of
 
 Feel free to reach out for collaborations, print inquiries, or just to discuss photography, geography, or travel!
 
-- 📧 Email: [song@gea.mpg.de](mailto:song@gea.mpg.de)
+- 📧 Email: [SongshGeo@gmail.com](mailto:SongshGeo@gmail.com)
 - 🐙 GitHub: [github.com/SongshGeo](https://github.com/SongshGeo)
 - 🌐 Academic CV: [cv.songshgeo.com](https://cv.songshgeo.com)
-- ✍️ Personal Blog: [songshgeo.com](https://songshgeo.com)
+- ✍️ Travel Blog: [songshgeo.com](https://songshgeo.com) - "A geographer who also travels"
 - 📅 Schedule a meeting: [Online meeting](https://cal.com/s-huang-song-sodoej/get-in-touch)

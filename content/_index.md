@@ -14,3 +14,10 @@ This collection showcases images captured during my travels and research journey
 ## Featured Collections
 
 Explore the galleries below, where scientific curiosity meets photographic artistry. Each album documents different aspects of the human-environment interaction that defines my work and travels.
+
+---
+
+**Learn more about me:**
+- 🎓 [Academic CV](https://cv.songshgeo.com) - My research and publications
+- ✍️ [Travel Blog](https://songshgeo.com) - Stories from a geographer's journeys
+- 📧 Contact: [SongshGeo@gmail.com](mailto:SongshGeo@gmail.com)
