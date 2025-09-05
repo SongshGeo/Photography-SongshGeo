@@ -1,12 +1,16 @@
 ---
 title: "Photography by SongshGeo"
-description: "Welcome to my photography gallery. Explore my collection of images capturing moments, landscapes, and stories."
+description: "Visual stories from a geographer's journey - capturing the intersection of human society and natural environments through the lens."
 ---
 
-# Welcome to My Photography Gallery
+# Photography by SongshGeo
 
-This is a collection of my photography work, organized into different albums and categories. Feel free to browse through the galleries and discover the stories behind each image.
+> *"A geographer who also travels."*
+
+Welcome to my photography gallery! I'm **Shuang Song**, a scientist by profession and photographer by passion. As a researcher studying the co-evolution between human society and natural environments, my camera becomes both a tool for documentation and artistic expression.
+
+This collection showcases images captured during my travels and research journeys across different landscapes and cultures. From the dramatic natural environments that shape civilizations to the urban spaces where modern life unfolds, each photograph tells part of a larger story about our relationship with the world around us.
 
 ## Featured Collections
 
-Browse through my photography collections showcasing different subjects and styles. Each album tells a unique story through carefully curated images.
+Explore the galleries below, where scientific curiosity meets photographic artistry. Each album documents different aspects of the human-environment interaction that defines my work and travels.

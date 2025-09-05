@@ -4,21 +4,25 @@ title = 'Photography by SongshGeo'
 theme = 'gallery'
 
 # Content settings
-paginate = 100
+[pagination]
+  pagerSize = 100
 enableRobotsTXT = true
 enableGitInfo = true
 
 # Theme settings
 [params]
-  author = 'SongshGeo'
   description = 'A photography gallery showcasing the work of SongshGeo'
   copyright = '© 2025 SongshGeo. All rights reserved.'
   defaultTheme = 'auto'  # 'light', 'dark', or 'auto'
   
+  [params.author]
+    name = 'Shuang Song (SongshGeo)'
+    email = 'song@gea.mpg.de'
+  
   # Social icons
   [params.socialIcons]
     github = 'https://github.com/SongshGeo'
-    email = 'mailto:songshgeo@example.com'
+    email = 'mailto:song@gea.mpg.de'
 
 # Image processing
 [imaging]
