@@ -1,0 +1,66 @@
+baseURL = 'https://songshgeo.github.io/Photography-SongshGeo/'
+languageCode = 'en-us'
+title = 'Photography by SongshGeo'
+theme = 'gallery'
+
+# Content settings
+paginate = 100
+enableRobotsTXT = true
+enableGitInfo = true
+
+# Theme settings
+[params]
+  author = 'SongshGeo'
+  description = 'A photography gallery showcasing the work of SongshGeo'
+  copyright = '© 2025 SongshGeo. All rights reserved.'
+  defaultTheme = 'auto'  # 'light', 'dark', or 'auto'
+  
+  # Social icons
+  [params.socialIcons]
+    github = 'https://github.com/SongshGeo'
+    email = 'mailto:songshgeo@example.com'
+
+# Image processing
+[imaging]
+  # Default resample filter used for resizing
+  resampleFilter = 'lanczos'
+  # Default JPEG quality
+  quality = 85
+  # Anchor used when cropping pictures
+  anchor = 'smart'
+  # Default background color
+  bgColor = '#ffffff'
+
+# Related content configuration
+[related]
+  includeNewer = true
+  threshold = 10
+  toLower = false
+  [[related.indices]]
+    applyFilter = false
+    cardinalityThreshold = 0
+    name = 'categories'
+    pattern = ''
+    toLower = false
+    type = 'basic'
+    weight = 10
+  [[related.indices]]
+    applyFilter = false
+    cardinalityThreshold = 0
+    name = 'tags'
+    pattern = ''
+    toLower = false
+    type = 'basic'
+    weight = 50
+
+# Taxonomies
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+  series = 'series'
+
+# Markup configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
