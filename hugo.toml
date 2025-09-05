@@ -1,4 +1,4 @@
-baseURL = 'https://songshgeo.github.io/Photography-SongshGeo/'
+baseURL = 'https://photography-songshgeo.vercel.app/'
 languageCode = 'en-us'
 title = 'Photography by SongshGeo'
 theme = 'gallery'

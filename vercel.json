@@ -3,10 +3,5 @@
     "env": {
       "HUGO_VERSION": "0.148.2"
     }
-  },
-  "functions": {
-    "app/api/**/*.go": {
-      "runtime": "@vercel/go"
-    }
   }
 }
