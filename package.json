@@ -1,0 +1,12 @@
+{
+  "name": "photography-songshgeo",
+  "version": "1.0.0",
+  "description": "Photography gallery for SongshGeo - A geographer who also travels",
+  "scripts": {
+    "build": "git submodule update --init --recursive && hugo --gc --minify",
+    "dev": "hugo server --buildDrafts",
+    "start": "hugo server"
+  },
+  "keywords": ["hugo", "photography", "gallery"],
+  "author": "Shuang Song (SongshGeo)"
+}
