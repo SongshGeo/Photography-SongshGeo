@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Photography gallery for SongshGeo - A geographer who also travels",
   "scripts": {
-    "build": "git submodule update --init --recursive && hugo --gc --minify",
+    "build": "hugo --gc --minify",
     "dev": "hugo server --buildDrafts",
     "start": "hugo server"
   },

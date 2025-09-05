@@ -1,5 +1,5 @@
 {
-  "buildCommand": "git submodule update --init --recursive && hugo --gc --minify",
+  "buildCommand": "hugo --gc --minify",
   "outputDirectory": "public",
   "build": {
     "env": {
