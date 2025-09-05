@@ -1,4 +1,4 @@
-baseURL = 'https://photography-songshgeo.vercel.app/'
+baseURL = 'https://gallery.songshgeo.com/'
 languageCode = 'en-us'
 title = 'Photography by SongshGeo'
 theme = 'gallery'
