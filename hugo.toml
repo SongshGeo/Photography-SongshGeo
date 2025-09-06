@@ -1,6 +1,6 @@
 baseURL = 'https://gallery.songshgeo.com/'
 languageCode = 'en-us'
-title = 'Photography by SongshGeo'
+title = 'Photoprints'
 theme = 'gallery'
 
 # Content settings
