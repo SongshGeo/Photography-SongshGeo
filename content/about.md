@@ -2,6 +2,10 @@
 title: "About"
 date: 2025-09-05T05:49:22Z
 description: "About Shuang Song (SongshGeo) - scientist, traveler, and photographer"
+menus:
+  main:
+    name: About
+    weight: -1
 ---
 
 # About Me

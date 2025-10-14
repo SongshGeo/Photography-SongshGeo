@@ -1,6 +1,18 @@
 ---
-title: "Photography by SongshGeo"
-description: "Visual stories from a geographer's journey - capturing the intersection of human society and natural environments through the lens."
+title: "Twisted Len"
+description: "I passed by, I saw."
+resources:
+  - src: martin-martz-wRuhOOaG-Z4-unsplash.jpg
+    params:
+      cover: true # cover of the home page is used for OpenGraph cards, etc.
+menus:
+  main:
+    name: Home
+    weight: -1
+# sub-galleries on list pages are sorted by date and weight (descending)
+#cascade:
+#  build:
+#    publishResources: false # do not include full images. Also disable download
 ---
 
 # Photography by SongshGeo
@@ -14,8 +26,6 @@ This collection showcases images captured during my travels and research journey
 ## Featured Collections
 
 Explore the galleries below, where scientific curiosity meets photographic artistry. Each album documents different aspects of the human-environment interaction that defines my work and travels.
-
----
 
 **Learn more about me:**
 - 🎓 [Academic CV](https://cv.songshgeo.com) - My research and publications

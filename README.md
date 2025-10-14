@@ -63,7 +63,131 @@ Photography-SongshGeo/
 
 4. **View locally**: Open [http://localhost:1313](http://localhost:1313)
 
-## 📷 Adding Photos
+## 📷 Professional Photography Workflow
+
+### Complete Pipeline: From Camera to Website
+
+This repository contains a streamlined workflow for professional photographers to publish travel photos with precise GPS geotagging and automated website generation.
+
+#### 🔧 Prerequisites
+
+1. **Lightroom Classic** with plugins:
+   - [Jeffrey's Geotag Support Plugin](http://regex.info/blog/lightroom-goodies/gps)
+   - [JF Collection Publisher](https://regex.info/blog/lightroom-goodies/collection-publisher)
+
+2. **Command-line tools**:
+   ```bash
+   # Install dependencies
+   brew install exiftool
+   pip3 install --user --break-system-packages geopy gpxpy
+   ```
+
+#### 📋 Step-by-Step Workflow
+
+##### Step 1: Photo Preprocessing in Lightroom
+
+1. **Import and organize**:
+   - Import camera photos from your trip
+   - Create smart collections by date range
+   - Flag picks (P key) and rate 4+ stars for selection
+
+2. **Create copyright preset**:
+   ```
+   Copyright: © 2025 SongshGeo
+   Creator: SongshGeo
+   Creator URL: https://songshgeo.github.io/Photography-SongshGeo/
+   Keywords: photography, travel, [country], [city]
+   ```
+   - Apply preset to all selected photos
+
+##### Step 2: GPS Track Generation
+
+1. **Find phone photos** from the same date range with GPS data
+
+2. **Generate GPX track**:
+   ```bash
+   # Extract GPS from phone photos
+   ./scripts/extract-mac-photos-gps.sh
+   
+   # Convert to GPX format
+   python3 scripts/json2gpx.py mac-photos-gps.json phone-track.gpx
+   ```
+
+##### Step 3: Geotagging in Lightroom
+
+1. **Load GPS track**:
+   - File > Plug-in Extras > Geoencoding Support > Load Track Log
+   - Select your GPX file
+   - Plugin automatically matches GPS to photos by timestamp
+
+2. **Reverse geocoding**:
+   - Use Jeffrey's plugin to lookup addresses from GPS coordinates
+   - This fills City/Country/State fields automatically
+
+##### Step 4: Smart Collection Publishing
+
+1. **Set up Collection Publisher**:
+   - Create published folder: `content/trips/`
+   - Configure naming: `{date (yyyy)}-{date (mm)}-{date (dd)}-{sequence (0001)}`
+   - Set export settings: JPEG quality 85%, 2560px long edge
+
+2. **Create smart collections**:
+   ```
+   Collection Name: [Country] - [City] - [Year]
+   Filter: Country = [Country] AND City = [City] AND Flag = Pick
+   ```
+
+3. **Publish collections**:
+   - Drag photos to appropriate collections
+   - Right-click collection > "Publish"
+   - Photos automatically export to `content/trips/[Country]/`
+
+##### Step 5: Website Generation
+
+1. **Create trip index** (copy template):
+   ```yaml
+   ---
+   title: "[City], [Country] [Year]"
+   date: [YYYY-MM-DD]
+   location:
+     country: [Country]
+     city: [City]
+   coords:
+     lat: [latitude]
+     lon: [longitude]
+   cover: [filename].jpg
+   tags: [landscape, travel, [country]]
+   ---
+   ```
+
+2. **Build and deploy**:
+   ```bash
+   # Test locally
+   hugo server --buildDrafts
+   
+   # Commit and push (auto-deploys to Vercel)
+   git add .
+   git commit -m "Add [Country] trip photos"
+   git push origin main
+   ```
+
+#### 🎯 Workflow Benefits
+
+- ✅ **Precise GPS tagging**: Phone GPS + camera photos = accurate locations
+- ✅ **Automated organization**: Smart collections sort by location automatically  
+- ✅ **Professional metadata**: Copyright, keywords, and location data included
+- ✅ **One-click publishing**: Collection Publisher handles file naming and export
+- ✅ **Version control**: All photos tracked in Git with proper history
+- ✅ **SEO optimized**: Automatic sitemap and metadata for search engines
+
+#### 📚 Advanced Features
+
+- **Batch processing**: Handle hundreds of photos in minutes
+- **Reverse geocoding**: Automatic city/country lookup from coordinates
+- **Smart collections**: Dynamic filtering by date, location, rating
+- **Template system**: Consistent photo metadata across all trips
+
+### Adding Photos Manually
 
 To add photos to an existing album:
 
