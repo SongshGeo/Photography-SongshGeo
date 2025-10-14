@@ -18,9 +18,3 @@ resources:
   - src: 20250821-P8210193.jpeg
     title: "Cityscape detail"
 ---
-
-# Denmark
-
-A journey through the serene landscapes and modern urban environments of Denmark. These photographs capture the unique character of Scandinavian design and natural beauty, from coastal scenes to contemporary architecture.
-
-As a geographer, I was particularly drawn to how Danish cities seamlessly integrate with their natural surroundings, creating harmonious urban-nature relationships that reflect the country's environmental consciousness.
