@@ -29,3 +29,13 @@ yarn-error.log*
 *.tmp
 *.temp
 .vercel
+
+# GPS extraction artifacts
+mac-photos-gps.json
+mac-photos-track.gpx
+mac-photos-track-*.gpx
+*-gps.json
+*-track.gpx
+*-cities.json
+*-itinerary.json
+*-template.md
