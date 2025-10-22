@@ -30,14 +30,16 @@ yarn-error.log*
 *.temp
 .vercel
 
-# GPS extraction artifacts
-mac-photos-gps.json
-mac-photos-track.gpx
-mac-photos-track-*.gpx
-*-gps.json
-*-track.gpx
-*-cities.json
-*-itinerary.json
-*-template.md
+# GPS extraction artifacts  
+/gpx/*.json
+/gpx/*.gpx
+!gpx/.gitkeep
 
-gpx
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.pyc
+__pycache__/
+.mypy_cache/
+.tox/
