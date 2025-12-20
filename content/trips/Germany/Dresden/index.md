@@ -1,6 +1,6 @@
 ---
 date: 2025-09-22
-title: "Dresden"
+title: "Dresden, Germany"
 description: "Capturing the beauty of Dresden, Germany - a city renowned for its baroque architecture and cultural heritage."
 categories: ["trips"]
 tags: ["germany", "dresden", "architecture"]

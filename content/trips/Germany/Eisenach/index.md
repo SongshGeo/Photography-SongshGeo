@@ -1,6 +1,6 @@
 ---
 date: 2025-10-19
-title: "Eisenach"
+title: "Eisenach, Germany"
 description: "Capturing the beauty of Eisenach, Germany - a city rich in cultural heritage and medieval architecture."
 categories: ["trips"]
 tags: ["germany", "eisenach", "architecture"]
