@@ -1,24 +1,57 @@
 {{ $gallery := "" }}
 {{ $images :=  where (.Resources.ByType "image") "Params.hidden" "ne" true }}
-{{ if gt (len $images) 0 }}
-  {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
-  {{ $cover := "" }}
-  {{ if ge (len $covers) 0 }}
-    {{ $cover = index $covers 0 }}
-  {{ end }}
-  {{ $featured := $cover | default ((.Resources.ByType "image").GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-  {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
-  {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-  {{ $imageCount := 0 }}
-  {{ $albumCount := 0 }}
-  {{ if .IsPage }}
+{{ $thumbnail := "" }}
+{{ $color := "transparent" }}
+{{ $imageCount := 0 }}
+{{ $albumCount := 0 }}
+
+{{ if .IsPage }}
+  {{/* Leaf bundle: use its own images */}}
+  {{ if gt (len $images) 0 }}
+    {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
+    {{ $cover := "" }}
+    {{ if ge (len $covers) 0 }}
+      {{ $cover = index $covers 0 }}
+    {{ end }}
+    {{ $featured := $cover | default ((.Resources.ByType "image").GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+    {{ $thumbnail = $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+    {{ $color = index $thumbnail.Colors 0 | default "transparent" }}
     {{ $imageCount = len $images }}
-  {{ else }}
-    {{ range where .RegularPagesRecursive "Params.private" "ne" true }}
-      {{ $albumCount = add $albumCount 1 }}
-      {{ $imageCount = add $imageCount (len (where (.Resources.ByType "image") "Params.hidden" "ne" true)) }}
+  {{ end }}
+{{ else }}
+  {{/* Branch bundle: count children and use first child's cover image */}}
+  {{ $firstChildImage := "" }}
+  {{ range where .Pages "Params.private" "ne" true }}
+    {{ $albumCount = add $albumCount 1 }}
+    {{ $childImages := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
+    {{ $imageCount = add $imageCount (len $childImages) }}
+    {{/* Get first child's cover image for thumbnail */}}
+    {{ if and (not $firstChildImage) (gt (len $childImages) 0) }}
+      {{ $childCovers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
+      {{ if gt (len $childCovers) 0 }}
+        {{ $firstChildImage = index $childCovers 0 }}
+      {{ else }}
+        {{ $firstChildImage = index $childImages 0 }}
+      {{ end }}
     {{ end }}
   {{ end }}
+  {{/* Use own images if available, otherwise use first child's image */}}
+  {{ if gt (len $images) 0 }}
+    {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
+    {{ $cover := "" }}
+    {{ if ge (len $covers) 0 }}
+      {{ $cover = index $covers 0 }}
+    {{ end }}
+    {{ $featured := $cover | default ((.Resources.ByType "image").GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+    {{ $thumbnail = $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+    {{ $color = index $thumbnail.Colors 0 | default "transparent" }}
+  {{ else if $firstChildImage }}
+    {{ $thumbnail = $firstChildImage.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+    {{ $color = index $thumbnail.Colors 0 | default "transparent" }}
+  {{ end }}
+{{ end }}
+
+{{ if $thumbnail }}
   {{ $gallery = dict
     "page" $
     "images" $images
