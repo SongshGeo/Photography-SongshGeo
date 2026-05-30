@@ -1,0 +1,43 @@
+{{/* Curated cross-trip gallery built from data/featured_photos.yaml (high-star photos).
+     Regenerate the data file with: python3 scripts/build_featured.py
+     Markup mirrors the theme's partials/gallery.html so gallery.js (justified
+     layout) and lightbox.js (PhotoSwipe) pick it up via #gallery. */}}
+{{ with site.Data.featured_photos }}
+  <section class="gallery" id="gallery-section">
+    <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
+      {{ range $e := . }}
+        {{ $p := site.GetPage (printf "/%s" $e.page) }}
+        {{ with $p }}
+          {{ $image := .Resources.GetMatch $e.src }}
+          {{ with $image }}
+            {{ $thumbnail := .Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+            {{ $full := .Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+            {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+            <a
+              class="gallery-item"
+              href="{{ .RelPermalink }}"
+              data-pswp-src="{{ $full.RelPermalink }}"
+              data-pswp-width="{{ $full.Width }}"
+              data-pswp-height="{{ $full.Height }}"
+              data-pswp-target="{{ .Name | urlize }}"
+              title="{{ $e.title }}"
+              itemscope
+              itemtype="https://schema.org/ImageObject"
+              style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
+            >
+              <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+                <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ $e.title }}" />
+              </figure>
+              <meta itemprop="contentUrl" content="{{ .RelPermalink }}" />
+              {{ with site.Params.Author }}
+                <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
+                  <meta itemprop="name" content="{{ .name }}" />
+                </span>
+              {{ end }}
+            </a>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

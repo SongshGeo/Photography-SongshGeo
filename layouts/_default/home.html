@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <div class="home-intro">
+    {{ partial "home-hero.html" . }}
+    {{ with .Content }}
+      <section class="home-statement" id="story">
+        <div class="home-statement__inner prose">{{ . }}</div>
+      </section>
+    {{ end }}
+  </div>
+  {{ partial "home-gallery.html" . }}
+{{ end }}

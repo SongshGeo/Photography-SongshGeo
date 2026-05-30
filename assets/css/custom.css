@@ -1,0 +1,709 @@
+/* =========================================================================
+   custom.css — Editorial restyle (Chris Henry studio aesthetic)
+   Loaded last by themes/gallery/assets/css/main.scss (@import "custom"),
+   so every rule here wins the cascade over the base theme.
+   Direction: light-only, near-white, sharp-edged flat tiles, generous
+   whitespace, self-hosted Inter, uppercase letter-spaced labels.
+   ========================================================================= */
+
+/* ---- Inter (self-hosted variable font) -------------------------------- */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter-Variable.woff2") format("woff2");
+}
+
+/* ---- Editorial palette ------------------------------------------------- */
+/* The theme's active vars reference the *-light tokens, and defaultTheme is
+   locked to 'light', so redefining the -light tokens recolours everything
+   and the prefers-color-scheme: dark block no longer applies. */
+:root {
+  --surface-1-light: #faf9f6; /* warm off-white page background */
+  --surface-2-light: #efeee9; /* secondary surface */
+  --text-1-light: #1a1a1a; /* near-black primary text */
+  --text-2-light: #6e6e68; /* muted grey labels */
+  --border-light: #e4e3dd; /* hairline */
+
+  /* spacing rhythm */
+  --page-max: 1440px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --label-tracking: 0.12em;
+}
+
+/* ---- Base typography --------------------------------------------------- */
+html,
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv05" 1, "ss03" 1; /* slightly more humanist glyphs */
+  letter-spacing: -0.003em;
+}
+
+body {
+  background-color: var(--surface-1);
+  color: var(--text-1);
+}
+
+/* =========================================================================
+   Header — persistent top bar (wordmark + nav)
+   ========================================================================= */
+body > header.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 4.5rem;
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  background-color: color-mix(in srgb, var(--surface-1) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .wordmark {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.site-header .wordmark:hover {
+  color: var(--text-2);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav .nav-links {
+  display: none; /* mobile: collapsed into the toggle drawer */
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.site-nav .nav-links a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  color: var(--text-2);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a[aria-current="true"] {
+  color: var(--text-1);
+  border-bottom-color: var(--text-1);
+}
+
+/* Toggle button — borderless icon, mobile only */
+.site-header .nav-toggle {
+  display: inline-flex;
+  color: var(--text-1);
+  background: transparent;
+  height: 2.75rem;
+  width: 2.75rem;
+}
+
+@media (min-width: 768px) {
+  .site-nav .nav-links {
+    display: flex;
+  }
+  .site-header .nav-toggle {
+    display: none;
+  }
+  /* never reveal the mobile drawer on desktop, even if toggled before resize */
+  body > menu#menu {
+    display: none !important;
+  }
+}
+
+/* ---- Mobile drawer (#menu) -------------------------------------------- */
+body > menu#menu {
+  margin: -1rem auto 3rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+}
+
+body > menu#menu a {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- Wordmark persona dropdown ---------------------------------------- */
+.wordmark-menu {
+  position: relative;
+}
+
+.wordmark-menu > summary.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  list-style: none; /* hide the default disclosure triangle (Firefox) */
+  cursor: pointer;
+  user-select: none;
+}
+
+.wordmark-menu > summary.wordmark::-webkit-details-marker {
+  display: none; /* Chrome / Safari */
+}
+
+.wordmark-menu > summary.wordmark::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-0.12em);
+  opacity: 0.55;
+  transition: transform 200ms ease;
+}
+
+.wordmark-menu[open] > summary.wordmark::after {
+  transform: rotate(-135deg) translateY(-0.12em);
+}
+
+.wordmark-dropdown {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 0;
+  z-index: 60;
+  min-width: 16.5rem;
+  padding-bottom: 0.25rem;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 34px -16px rgba(0, 0, 0, 0.3);
+}
+
+.wordmark-dropdown .identity-label {
+  margin: 0;
+  padding: 0.8rem 1.2rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+}
+
+.wordmark-dropdown ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wordmark-dropdown li {
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.wordmark-dropdown a {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  border-left: 3px solid transparent;
+  white-space: nowrap;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.wordmark-dropdown a:hover {
+  background-color: var(--surface-2);
+}
+
+.wordmark-dropdown li.is-current a {
+  border-left-color: var(--text-1);
+  background-color: var(--surface-2);
+}
+
+.wordmark-dropdown .persona-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+}
+
+.wordmark-dropdown .persona-blurb {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-2);
+}
+
+/* =========================================================================
+   Hero (hgroup via title.html)
+   ========================================================================= */
+hgroup {
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  max-width: var(--page-max);
+}
+
+hgroup h1 {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: clamp(1.875rem, calc(1.4rem + 2vw), 3rem);
+  line-height: 1.1;
+}
+
+hgroup p {
+  max-width: 46ch;
+  color: var(--text-2);
+  font-size: 1.0625rem;
+  letter-spacing: 0;
+  line-height: 1.6;
+}
+
+/* =========================================================================
+   Section rhythm
+   ========================================================================= */
+main > section {
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+
+/* ---- Album grid -------------------------------------------------------- */
+section.galleries {
+  max-width: var(--page-max);
+  gap: 2.5rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  section.galleries {
+    gap: 3.5rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section.galleries {
+    gap: 4rem 2rem;
+  }
+}
+
+/* ---- Album card — flat, square, caption below ------------------------- */
+.card {
+  border-radius: 0;
+}
+
+.card > figure {
+  aspect-ratio: 3 / 2;
+  border-radius: 0;
+  overflow: hidden; /* clip the hover zoom */
+  background-color: var(--surface-2);
+}
+
+.card > img,
+.card figure > img {
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover > img,
+.card:hover figure > img {
+  box-shadow: none;
+  transform: scale(1.04);
+}
+
+.card > div {
+  gap: 0.4rem;
+  padding: 1rem 0 0;
+}
+
+.card > div > h2 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  color: var(--text-1);
+}
+
+.card > div > p {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+/* =========================================================================
+   Featured spotlight
+   ========================================================================= */
+section.featured {
+  max-width: var(--page-max);
+}
+
+.featured-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.featured-card:hover {
+  box-shadow: none;
+}
+
+.featured-card > div {
+  gap: 0.6rem;
+  padding: 2rem;
+  background-image: linear-gradient(to top, RGB(0 0 0 / 0.72) 8%, RGB(0 0 0 / 0) 55%);
+}
+
+.featured-card > div > h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.featured-card > div > p {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* =========================================================================
+   Single gallery page — justified photo grid
+   ========================================================================= */
+section.gallery {
+  max-width: 1680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: clamp(1rem, 2vw, 1.75rem);
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+}
+
+.gallery-item figure {
+  background-color: var(--surface-2);
+}
+
+/* =========================================================================
+   Prose (single-page descriptions, about page)
+   ========================================================================= */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.prose a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.prose h2,
+.prose h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* =========================================================================
+   Footer
+   ========================================================================= */
+body > footer {
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+body > footer section:last-of-type {
+  gap: 1.25rem;
+  padding: 3rem 1.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+}
+
+body > footer section:last-of-type a {
+  color: var(--text-2);
+  transition: color 200ms ease;
+}
+
+body > footer section:last-of-type a:hover {
+  color: var(--text-1);
+  text-decoration-line: none;
+}
+
+section.social-icons {
+  gap: 1.75rem;
+  margin-top: 1rem;
+  color: var(--text-2);
+}
+
+section.social-icons a {
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+section.social-icons a:hover {
+  color: var(--text-1);
+  transform: translateY(-2px);
+}
+
+/* =========================================================================
+   Home — full-bleed featured hero + scroll cue into the gallery
+   ========================================================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+.home-hero-wrap {
+  position: relative;
+  /* pull the hero flush under the sticky header (cancels its margin-bottom) */
+  margin-top: calc(-1 * clamp(2.5rem, 6vw, 5rem));
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* On wide screens, hero + statement together fill exactly one screen
+   (below the sticky header), so the gallery begins just past the fold. */
+@media (min-width: 1024px) {
+  body.is-home > header.site-header {
+    margin-bottom: 0;
+  }
+  .home-intro {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 4.5rem); /* 4.5rem = sticky header height */
+  }
+  .home-intro .home-hero-wrap {
+    margin: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .home-intro .home-hero {
+    height: 100%;
+    max-height: none;
+  }
+  .home-intro .home-statement {
+    flex: 0 0 auto;
+    margin: 0 auto;
+    padding-top: clamp(1.25rem, 2.5vh, 2.5rem);
+    padding-bottom: clamp(1.25rem, 2.5vh, 2.5rem);
+  }
+}
+
+.home-hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 88vh;
+  max-height: 920px;
+  overflow: hidden;
+  background-color: var(--surface-2);
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.home-hero__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background-image: linear-gradient(to top, RGB(0 0 0 / 0.6) 0%, RGB(0 0 0 / 0) 42%);
+}
+
+.home-hero__title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 1.05;
+  color: #fff;
+}
+
+.home-hero__caption {
+  margin-top: 0.6rem;
+  max-width: 42ch;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.home-hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3vh, 2rem);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  color: #fff;
+  opacity: 0.85;
+  animation: hero-bounce 2.2s ease-in-out infinite;
+  transition: opacity 200ms ease;
+}
+
+.home-hero__scroll:hover {
+  opacity: 1;
+}
+
+@keyframes hero-bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .home-hero__scroll {
+    animation: none;
+  }
+}
+
+/* =========================================================================
+   Home — elegant intro statement between hero and gallery
+   ========================================================================= */
+.home-statement {
+  margin: clamp(3rem, 8vw, 6rem) auto clamp(3rem, 8vw, 6rem);
+  padding-right: clamp(1rem, 2vw, 1.75rem);
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  max-width: 1360px;
+}
+
+.home-statement__inner {
+  max-width: none;
+  color: var(--text-1);
+  font-size: clamp(1.0625rem, calc(1rem + 0.25vw), 1.2rem);
+  line-height: 1.72;
+  letter-spacing: -0.003em;
+  text-align: left;
+  hyphens: auto;
+}
+
+/* multi-column according to page width — National Geographic style */
+@media (min-width: 760px) {
+  .home-statement__inner {
+    column-count: 2;
+    column-gap: clamp(2rem, 4vw, 3.5rem);
+    text-align: justify;
+  }
+}
+
+/* very wide screens — up to three columns, widened to match the gallery */
+@media (min-width: 1536px) {
+  .home-statement {
+    max-width: 1680px;
+  }
+  .home-statement__inner {
+    column-count: 3;
+  }
+}
+
+.home-statement__inner p {
+  margin: 0 0 1em;
+}
+
+.home-statement__inner > :first-child {
+  margin-top: 0;
+}
+
+.home-statement__inner > :last-child {
+  margin-bottom: 0;
+}
+
+/* drop cap on the first letter of the lead paragraph */
+.home-statement__inner p:first-of-type::first-letter {
+  float: left;
+  margin: 0.04em 0.09em 0 0;
+  font-size: 3.4em;
+  line-height: 0.72;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* =========================================================================
+   About page — portrait beside text, wide closing band
+   ========================================================================= */
+section.about {
+  max-width: var(--page-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .about-intro {
+    grid-template-columns: minmax(240px, 36%) 1fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .about-portrait {
+    position: sticky;
+    top: 6.5rem; /* clears the sticky header */
+  }
+}
+
+.about-portrait img,
+.about-wide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: var(--surface-2);
+}
+
+.about-text.prose {
+  max-width: 62ch;
+}
+
+.about-text.prose > :first-child {
+  margin-top: 0;
+}
+
+.about-text.prose strong + p,
+.about-text.prose p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* the "Elsewhere" links list — quiet, uppercase label feel */
+.about-text.prose ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.about-text.prose ul > li {
+  padding-left: 0;
+  color: var(--text-2);
+}
+
+.about-wide {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* =========================================================================
+   Leftover single-category pill nav — hidden (nav lives in the top bar)
+   ========================================================================= */
+nav.categories {
+  display: none;
+}
