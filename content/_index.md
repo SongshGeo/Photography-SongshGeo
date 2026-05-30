@@ -1,6 +1,6 @@
 ---
-title: "Twisted Len"
-description: "I passed by, I saw."
+title: "Shuang Song"
+description: "A geographer who also travels."
 resources:
   - src: martin-martz-wRuhOOaG-Z4-unsplash.jpg
     params:
@@ -15,6 +15,4 @@ menus:
 #    publishResources: false # do not include full images. Also disable download
 ---
 
-I photograph the way I read landscapes — looking for the quiet logic beneath a scene, the way water, land, and time leave their mark on a place and the people who live there. What began as field notes from research journeys has become something more personal: not a record of where I have been, but of the moments that asked me to stop and look.
-
-These are the frames I chose to keep.
+Photography, for me, is not an end in itself but a natural outcome of exploring the world and the way I read landscapes — looking for the quiet logic beneath a scene, the way water, land, and time leave their mark on a place and the people who live there. What began as field notes from research journeys has become something more personal: not a record of where I have been, but of the moments that asked me to stop and look.

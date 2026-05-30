@@ -144,6 +144,106 @@ body > menu#menu a {
   border-bottom: 1px solid var(--border);
 }
 
+/* ---- Wordmark persona dropdown ---------------------------------------- */
+.wordmark-menu {
+  position: relative;
+}
+
+.wordmark-menu > summary.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  list-style: none; /* hide the default disclosure triangle (Firefox) */
+  cursor: pointer;
+  user-select: none;
+}
+
+.wordmark-menu > summary.wordmark::-webkit-details-marker {
+  display: none; /* Chrome / Safari */
+}
+
+.wordmark-menu > summary.wordmark::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-0.12em);
+  opacity: 0.55;
+  transition: transform 200ms ease;
+}
+
+.wordmark-menu[open] > summary.wordmark::after {
+  transform: rotate(-135deg) translateY(-0.12em);
+}
+
+.wordmark-dropdown {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 0;
+  z-index: 60;
+  min-width: 16.5rem;
+  padding-bottom: 0.25rem;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 34px -16px rgba(0, 0, 0, 0.3);
+}
+
+.wordmark-dropdown .identity-label {
+  margin: 0;
+  padding: 0.8rem 1.2rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+}
+
+.wordmark-dropdown ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wordmark-dropdown li {
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.wordmark-dropdown a {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  border-left: 3px solid transparent;
+  white-space: nowrap;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.wordmark-dropdown a:hover {
+  background-color: var(--surface-2);
+}
+
+.wordmark-dropdown li.is-current a {
+  border-left-color: var(--text-1);
+  background-color: var(--surface-2);
+}
+
+.wordmark-dropdown .persona-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+}
+
+.wordmark-dropdown .persona-blurb {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-2);
+}
+
 /* =========================================================================
    Hero (hgroup via title.html)
    ========================================================================= */
@@ -365,6 +465,34 @@ html {
   /* pull the hero flush under the sticky header (cancels its margin-bottom) */
   margin-top: calc(-1 * clamp(2.5rem, 6vw, 5rem));
   margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* On wide screens, hero + statement together fill exactly one screen
+   (below the sticky header), so the gallery begins just past the fold. */
+@media (min-width: 1024px) {
+  body.is-home > header.site-header {
+    margin-bottom: 0;
+  }
+  .home-intro {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 4.5rem); /* 4.5rem = sticky header height */
+  }
+  .home-intro .home-hero-wrap {
+    margin: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .home-intro .home-hero {
+    height: 100%;
+    max-height: none;
+  }
+  .home-intro .home-statement {
+    flex: 0 0 auto;
+    margin: 0 auto;
+    padding-top: clamp(1.25rem, 2.5vh, 2.5rem);
+    padding-bottom: clamp(1.25rem, 2.5vh, 2.5rem);
+  }
 }
 
 .home-hero {

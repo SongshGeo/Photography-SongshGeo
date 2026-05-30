@@ -3,7 +3,7 @@
      Markup mirrors the theme's partials/gallery.html so gallery.js (justified
      layout) and lightbox.js (PhotoSwipe) pick it up via #gallery. */}}
 {{ with site.Data.featured_photos }}
-  <section class="gallery">
+  <section class="gallery" id="gallery-section">
     <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
       {{ range $e := . }}
         {{ $p := site.GetPage (printf "/%s" $e.page) }}

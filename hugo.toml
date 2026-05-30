@@ -1,6 +1,6 @@
 baseURL = 'https://gallery.songshgeo.com/'
 languageCode = 'en-us'
-title = 'Shuang Song'
+title = 'Shuang - Explorer'
 theme = 'gallery'
 
 # Content settings
@@ -14,6 +14,28 @@ enableGitInfo = true
   description = 'A photography gallery showcasing the work of SongshGeo'
   copyright = '© 2025 SongshGeo. All rights reserved.'
   defaultTheme = 'light'  # 'light', 'dark', or 'auto' — locked to light for the editorial look
+  wordmark = 'Shuang Song'  # brand text shown top-left (separate from the SEO title)
+  currentPersona = 'Explorer'  # highlights this identity in the dropdown
+
+  # Persona switcher shown in the top-left wordmark dropdown
+  [[params.personas]]
+    name = 'Scientist'
+    label = 'As a Scientist'
+    blurb = 'Academic site'
+    url = 'https://cv.songshgeo.com/'
+    external = true
+  [[params.personas]]
+    name = 'Explorer'
+    label = 'As an Explorer'
+    blurb = 'Essays & longform blog'
+    url = 'https://songshgeo.com/'
+    external = true
+  [[params.personas]]
+    name = 'Developer'
+    label = 'As a Developer'
+    blurb = 'Open source on GitHub'
+    url = 'https://github.com/SongshGeo'
+    external = true
   
   [params.author]
     name = 'Shuang Song (SongshGeo)'
@@ -90,14 +112,6 @@ enableGitInfo = true
   name = 'Journal'
   url = 'https://songshgeo.com/'
   weight = 40
-  [menu.main.params]
-    rel = 'noopener'
-    external = true
-
-[[menu.main]]
-  name = 'CV'
-  url = 'https://cv.songshgeo.com/'
-  weight = 50
   [menu.main.params]
     rel = 'noopener'
     external = true
