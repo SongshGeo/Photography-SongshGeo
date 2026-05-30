@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+
+  {{ $portrait := resources.Get "images/about/me_profile.jpeg" }}
+
+  <section class="about">
+    <div class="about-intro">
+      {{ with $portrait }}
+        {{ $p := .Filter (slice images.AutoOrient (images.Process "fit 1000x1500")) }}
+        {{ $p2 := .Filter (slice images.AutoOrient (images.Process "fit 2000x3000")) }}
+        <figure class="about-portrait">
+          <img
+            src="{{ $p.RelPermalink }}"
+            srcset="{{ $p.RelPermalink }} 1x, {{ $p2.RelPermalink }} 2x"
+            width="{{ $p.Width }}"
+            height="{{ $p.Height }}"
+            alt="Portrait of Shuang Song"
+            loading="lazy"
+          />
+        </figure>
+      {{ end }}
+      {{ with .Content }}
+        <div class="about-text prose">{{ . }}</div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

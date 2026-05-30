@@ -1,6 +1,6 @@
 baseURL = 'https://gallery.songshgeo.com/'
 languageCode = 'en-us'
-title = 'Photoprints'
+title = 'Shuang Song'
 theme = 'gallery'
 
 # Content settings
@@ -13,7 +13,7 @@ enableGitInfo = true
 [params]
   description = 'A photography gallery showcasing the work of SongshGeo'
   copyright = '© 2025 SongshGeo. All rights reserved.'
-  defaultTheme = 'auto'  # 'light', 'dark', or 'auto'
+  defaultTheme = 'light'  # 'light', 'dark', or 'auto' — locked to light for the editorial look
   
   [params.author]
     name = 'Shuang Song (SongshGeo)'
@@ -71,3 +71,51 @@ enableGitInfo = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+# Single-gallery justified layout — airier spacing for the editorial look
+# (read by themes/gallery/layouts/partials/head.html)
+[params.gallery]
+  targetRowHeight = 340
+  boxSpacing = 14
+  targetRowHeightTolerance = 0.25
+
+# Primary navigation (rendered in the persistent top bar).
+# "Home" comes from content/_index.md and "Trips" from content/trips/_index.md.
+[[menu.main]]
+  name = 'About'
+  url = '/about/'
+  weight = 30
+
+[[menu.main]]
+  name = 'Journal'
+  url = 'https://songshgeo.com/'
+  weight = 40
+  [menu.main.params]
+    rel = 'noopener'
+    external = true
+
+[[menu.main]]
+  name = 'CV'
+  url = 'https://cv.songshgeo.com/'
+  weight = 50
+  [menu.main.params]
+    rel = 'noopener'
+    external = true
+
+[[menu.main]]
+  name = 'Contact'
+  url = 'mailto:SongshGeo@gmail.com'
+  weight = 60
+  [menu.main.params]
+    external = true
+
+# Footer links
+[[menu.footer]]
+  name = 'About'
+  url = '/about/'
+  weight = 10
+
+[[menu.footer]]
+  name = 'Imprint'
+  url = '/imprint/'
+  weight = 20

@@ -1,0 +1,26 @@
+{{/* Large featured hero photo with short elegant text, links into the featured collection. */}}
+{{ $featured := index (where site.Pages.ByDate.Reverse "Params.featured" "=" true) 0 }}
+{{ with $featured }}
+  {{ $cover := "" }}
+  {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
+  {{ if gt (len $covers) 0 }}{{ $cover = index $covers 0 }}{{ end }}
+  {{ $img := $cover | default ((.Resources.ByType "image").GetMatch (.Params.featured_image | default "*feature*")) }}
+  {{ with $img }}
+    {{ $hero := .Filter (slice images.AutoOrient (images.Process "resize 2400x")) }}
+    <div class="home-hero-wrap">
+      <a class="home-hero" href="{{ $featured.RelPermalink }}" style="background-image: url({{ $hero.RelPermalink }})">
+        <div class="home-hero__inner">
+          <h1 class="home-hero__title">{{ site.Home.Title }}</h1>
+          {{ with site.Home.Params.description }}
+            <p class="home-hero__caption">{{ . | markdownify }}</p>
+          {{ end }}
+        </div>
+      </a>
+      <a class="home-hero__scroll" href="#story" aria-label="Scroll down">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+    </div>
+  {{ end }}
+{{ end }}

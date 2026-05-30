@@ -4,7 +4,10 @@ date: 2025-09-04
 description: "A geographer's journey around the world - documenting the intersection of culture, environment, and human experience through photography."
 keywords: ["travel"]
 weight: 1
-menus: "main"
+menus:
+  main:
+    name: Trips
+    weight: 10
 # Branch bundle requires at least one image to be displayed.
 featured: true
 resources:
