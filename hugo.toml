@@ -1,7 +1,11 @@
 baseURL = 'https://gallery.songshgeo.com/'
-languageCode = 'en-us'
 title = 'Shuang - Explorer'
 theme = 'gallery'
+
+# Multilingual: English at /, 中文 at /zh/. Keep EN at the root so the shared
+# /trips/ gallery URLs (and external links to them) don't move.
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
 
 # Content settings
 [pagination]
@@ -101,35 +105,96 @@ enableGitInfo = true
   boxSpacing = 14
   targetRowHeightTolerance = 0.25
 
-# Primary navigation (rendered in the persistent top bar).
-# "Home" comes from content/_index.md and "Trips" from content/trips/_index.md.
-[[menu.main]]
-  name = 'About'
-  url = '/about/'
-  weight = 30
+# ── Languages ──────────────────────────────────────────────────────────────
+# Menus are defined per-language here (no front-matter menus), so each language
+# gets fully localized nav labels. "Trips" stays at /trips/ in both languages
+# because the galleries are language-neutral and shared (not translated).
+[languages]
+  [languages.en]
+    languageCode = 'en-us'
+    languageName = 'English'
+    contentDir = 'content'
+    weight = 1
+    title = 'Shuang - Explorer'
+    [languages.en.params]
+      wordmark = 'Shuang Song'
 
-[[menu.main]]
-  name = 'Journal'
-  url = 'https://songshgeo.com/'
-  weight = 40
-  [menu.main.params]
-    rel = 'noopener'
-    external = true
+    [[languages.en.menus.main]]
+      name = 'Home'
+      url = '/'
+      weight = -1
+    [[languages.en.menus.main]]
+      name = 'Trips'
+      url = '/trips/'
+      weight = 10
+    [[languages.en.menus.main]]
+      name = 'About'
+      url = '/about/'
+      weight = 30
+    [[languages.en.menus.main]]
+      name = 'Journal'
+      url = 'https://songshgeo.com/'
+      weight = 40
+      [languages.en.menus.main.params]
+        rel = 'noopener'
+        external = true
+    [[languages.en.menus.main]]
+      name = 'Contact'
+      url = 'mailto:SongshGeo@gmail.com'
+      weight = 60
+      [languages.en.menus.main.params]
+        external = true
 
-[[menu.main]]
-  name = 'Contact'
-  url = 'mailto:SongshGeo@gmail.com'
-  weight = 60
-  [menu.main.params]
-    external = true
+    [[languages.en.menus.footer]]
+      name = 'About'
+      url = '/about/'
+      weight = 10
+    [[languages.en.menus.footer]]
+      name = 'Imprint'
+      url = '/imprint/'
+      weight = 20
 
-# Footer links
-[[menu.footer]]
-  name = 'About'
-  url = '/about/'
-  weight = 10
+  [languages.zh]
+    languageCode = 'zh-CN'
+    languageName = '中文'
+    contentDir = 'content'
+    weight = 2
+    title = '宋爽 - 探索者'
+    [languages.zh.params]
+      wordmark = '宋爽'
+      description = '一个展示宋爽摄影作品的画廊。'
 
-[[menu.footer]]
-  name = 'Imprint'
-  url = '/imprint/'
-  weight = 20
+    [[languages.zh.menus.main]]
+      name = '首页'
+      url = '/zh/'
+      weight = -1
+    [[languages.zh.menus.main]]
+      name = '旅行'
+      url = '/trips/'
+      weight = 10
+    [[languages.zh.menus.main]]
+      name = '关于'
+      url = '/zh/about/'
+      weight = 30
+    [[languages.zh.menus.main]]
+      name = '随笔'
+      url = 'https://blog.songshgeo.com/'
+      weight = 40
+      [languages.zh.menus.main.params]
+        rel = 'noopener'
+        external = true
+    [[languages.zh.menus.main]]
+      name = '联系'
+      url = 'mailto:SongshGeo@gmail.com'
+      weight = 60
+      [languages.zh.menus.main.params]
+        external = true
+
+    [[languages.zh.menus.footer]]
+      name = '关于'
+      url = '/zh/about/'
+      weight = 10
+    [[languages.zh.menus.footer]]
+      name = 'Imprint'
+      url = '/imprint/'
+      weight = 20

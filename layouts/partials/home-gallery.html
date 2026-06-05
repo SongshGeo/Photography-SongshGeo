@@ -3,10 +3,14 @@
      Markup mirrors the theme's partials/gallery.html so gallery.js (justified
      layout) and lightbox.js (PhotoSwipe) pick it up via #gallery. */}}
 {{ with site.Data.featured_photos }}
+  {{/* Trip pages live only in the default (en) site; resolve them there so the
+       /zh/ home gallery renders the same shared photos. */}}
+  {{ $enSite := site }}
+  {{ range site.Sites }}{{ if eq .Language.Lang "en" }}{{ $enSite = . }}{{ end }}{{ end }}
   <section class="gallery" id="gallery-section">
     <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
       {{ range $e := . }}
-        {{ $p := site.GetPage (printf "/%s" $e.page) }}
+        {{ $p := $enSite.GetPage (printf "/%s" $e.page) }}
         {{ with $p }}
           {{ $image := .Resources.GetMatch $e.src }}
           {{ with $image }}

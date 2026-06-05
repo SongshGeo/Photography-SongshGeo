@@ -1,5 +1,9 @@
-{{/* Large featured hero photo with short elegant text, links into the featured collection. */}}
-{{ $featured := index (where site.Pages.ByDate.Reverse "Params.featured" "=" true) 0 }}
+{{/* Large featured hero photo with short elegant text, links into the featured collection.
+     The trip galleries live only in the default (en) site, so resolve the featured
+     IMAGE from the en site — but keep the hero TEXT on site.Home (current language). */}}
+{{ $enSite := site }}
+{{ range site.Sites }}{{ if eq .Language.Lang "en" }}{{ $enSite = . }}{{ end }}{{ end }}
+{{ $featured := index (where $enSite.Pages.ByDate.Reverse "Params.featured" "=" true) 0 }}
 {{ with $featured }}
   {{ $cover := "" }}
   {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}

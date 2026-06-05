@@ -2,9 +2,7 @@
 title: Imprint
 rss_ignore: true
 layout: prose
-menu:
-  footer:
-    weight: 1
+# Footer menus are defined per-language in hugo.toml ([languages.*.menus.footer]).
 ---
 
 (Put your imprint here)
