@@ -107,6 +107,47 @@ body > header.site-header {
   border-bottom-color: var(--text-1);
 }
 
+/* Language switcher (EN | 中文) — always visible, sits at the end of the nav */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lang-switch__item {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  color: var(--text-2);
+  transition: color 200ms ease;
+}
+
+.lang-switch__item:hover {
+  color: var(--text-1);
+}
+
+.lang-switch__item.is-current {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  /* hairline divider before the switcher, only when nav-links are visible */
+  .lang-switch {
+    margin-left: 0.25rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 767px) {
+  /* push the switcher to the right, leaving room beside the toggle */
+  .lang-switch {
+    margin-left: auto;
+  }
+}
+
 /* Toggle button — borderless icon, mobile only */
 .site-header .nav-toggle {
   display: inline-flex;
